@@ -944,7 +944,7 @@ int mine_action(int choice1, int choice2, struct gameState *state, int handPos,\
         return -1;
     }
 
-    gainCard(choice2, state, 2, currentPlayer);
+    gainCard(choice1, state, 2, currentPlayer);
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
@@ -952,7 +952,7 @@ int mine_action(int choice1, int choice2, struct gameState *state, int handPos,\
     //discard trashed card
     for (i = 0; i < state->handCount[currentPlayer]; i++)
     {
-        if (state->hand[currentPlayer][i] == j)
+        if (state->hand[currentPlayer][i] != j)
         {
             discardCard(i, currentPlayer, state, 0);
             break;
