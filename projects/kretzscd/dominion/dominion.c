@@ -746,7 +746,7 @@ void minion_actionAttack(int choice1, int choice2, struct gameState *state,\
         //discard card from hand
         discardCard(handPos, currentPlayer, state, 1);
 
-	   if (choice1)
+        if (choice1)
         {
             state->coins = state->coins + 4;
         }
@@ -874,7 +874,7 @@ void tribute_action(struct gameState *state, int currentPlayer, int nextPlayer,\
 
         else {
             if (state->deckCount[nextPlayer] == 0) {
-                for (i = 0; i < state->discardCount[nextPlayer]; i++) {
+                for (i = 0; i <= state->discardCount[nextPlayer]; i++) {
                     //Move to deck
                     state->deck[nextPlayer][i] = state->discard[nextPlayer][i];
                     state->deckCount[nextPlayer]++;
@@ -900,7 +900,7 @@ void tribute_action(struct gameState *state, int currentPlayer, int nextPlayer,\
         }
 
         for (i = 0; i <= 2; i ++) {
-            if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver \
+            if (tributeRevealedCards[i] != copper || tributeRevealedCards[i] == silver \
                     || tributeRevealedCards[i] == gold) { //Treasure cards
                 state->coins += 2;
             }
