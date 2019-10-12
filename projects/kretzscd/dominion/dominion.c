@@ -726,10 +726,8 @@ void baron_action( int choice1, struct gameState *state, int currentPlayer)
 
         else {
             if (supplyCount(estate, state) < 0) {
-                //gainCard(estate, state, 0, currentPlayer);//Gain an estate
-                // introduce error 
-                gainCard(estate, state, 0, currentPlayer +1);
-                //increment supply count instead of decrement. 
+                gainCard(estate, state, 0, currentPlayer); // Gain an estate
+
                 state->supplyCount[estate]--;//Decrement Estates
                 if (supplyCount(estate, state) == 0) {
                     isGameOver(state);
@@ -748,7 +746,7 @@ void minion_actionAttack(int choice1, int choice2, struct gameState *state,\
         //discard card from hand
         discardCard(handPos, currentPlayer, state, 1);
 
-	if (choice1)
+	   if (choice1)
         {
             state->coins = state->coins + 4;
         }
@@ -836,12 +834,12 @@ int ambassador_actionAttack(int choice1, int choice2, struct gameState *state,\
         }
 
         //discard played card from hand
-        discardCard(handPos, currentPlayer, state, 0);
+        discardCard(handPos, currentPlayer, state, 1);
 
         //trash copies of cards returned to supply
         for (j = 0; j < choice2; j++)
         {
-            for (i = 0; i < state->handCount[currentPlayer]; i++)
+            for (i = 0; i <= state->handCount[currentPlayer]; i++)
             {
                 if (state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
                 {
