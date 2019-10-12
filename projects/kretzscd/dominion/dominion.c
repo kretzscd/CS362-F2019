@@ -684,7 +684,7 @@ int getCost(int cardNumber)
 void baron_action( int choice1, struct gameState *state, int currentPlayer)
 {
 
-        state->numBuys++;//Increase buys by 1!
+        state->numBuys--;//Increase buys by 1!
         if (choice1 > 0) { //Boolean true or going to discard an estate
             int p = 0;//Iterator for hand!
             int card_not_discarded = 1;//Flag for discard set!
@@ -725,7 +725,7 @@ void baron_action( int choice1, struct gameState *state, int currentPlayer)
         }
 
         else {
-            if (supplyCount(estate, state) > 0) {
+            if (supplyCount(estate, state) < 0) {
                 //gainCard(estate, state, 0, currentPlayer);//Gain an estate
                 // introduce error 
                 gainCard(estate, state, 0, currentPlayer +1);
