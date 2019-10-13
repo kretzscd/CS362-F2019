@@ -1139,7 +1139,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         return 0;
 
     case baron:
-        //call baron_action function which perform card's action
+        //call baron_action function which performs card's action
         baron_action(choice1, state, currentPlayer);
         return 0;
 
