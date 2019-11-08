@@ -30,6 +30,9 @@ char *inputString()
     //declare a static char array of 6 -- 5 with 1 left over for '\0'
     static char input[6];
 
+    // initialize the c-string
+    memset(input, '\0', sizeof(input));
+
     // generate random chars between 101 to 116 (includes the lower case
     // letters in reset
     int i;
