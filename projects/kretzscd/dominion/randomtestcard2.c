@@ -4,6 +4,9 @@
  *
  * randomtestCard2: randomtestcard2.c dominion.o rngs.o
  *	gcc  -o randomtestCard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+ *
+ * Reference for finding the time it takes to run the program is:
+ * https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/
  * -----------------------------------------------------------------------
  */
 
@@ -36,6 +39,10 @@ void assert(int expression, int *passed, int* failed,int* interimP,\
         int* interimF, int *count);
 
 int main() {
+
+    //get the time for the program
+    clock_t t;
+    t = clock();
     //one time set up to use rand()
     srand(time(NULL));
     // randomize the number of players in the game
@@ -52,7 +59,7 @@ int main() {
     G.playedCardCount = 0;
     G.numActions = 1;
     G.numBuys = 1;
-    int choice1, choice2;
+    int choice1, choice2, randomIndex;
     //declare/initialize counts that track the number of times certain state
     //outcomes fail
     int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
@@ -83,14 +90,14 @@ int main() {
             initializeGame(numPlayer, k, seed, &G);
             //randomize the other variables in the test
 	    G.handCount[p + 1] = randomNumber(6,100);
-            G.handCount[p] = randomNumber(0,100);
-            // set the players hand to have coppers
+            G.handCount[p] = randomNumber(6,100);
+            // set the players hand to random cards
             for(i = 0; i < G.handCount[p]; i++)
             {
                 G.hand[p][i] = randomNumber(0,26);
             }
             // set up for TEST 1 -- choice1 = 1, bonus +2 
-	    G.hand[p][5] = randomNumber(0,26);
+	    randomIndex = randomNumber(0,5);
             G.discardCount[p] = randomNumber(0,100);
             G.discardCount[p+1] = randomNumber(0,100);
             //choice1 and choice2 are booleans which is
@@ -116,8 +123,9 @@ int main() {
             printf("\n\n");
 	    #endif
 
-            // call minion_actionAction with random input
-	    minion_actionAttack(choice1,choice2, &G, G.hand[p][5], 0);
+            // call minion_actionAction with random input. Note that 5 is
+            // an index of a randomized card. So it is a randomized value.
+	    minion_actionAttack(choice1,choice2, &G, randomIndex, 0);
 
             #if(NOISY_TEST ==1)
 	    printf("Expect: bonus = 2\n");
@@ -215,6 +223,9 @@ int main() {
     printf("nextPlayer discardCount failed %d times\n\n", g);
 
     printf("All tests done for %s!\n", TESTCARD);
+    t = clock() - t;
+    double time_taken = ((double) t)/CLOCKS_PER_SEC;
+    printf("It took %f seconds for the testing to execute.\n", time_taken);
     printf("********************************************************\n\n");
     
 

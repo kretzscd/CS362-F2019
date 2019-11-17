@@ -4,6 +4,9 @@
  *
  *randomtestCard1: randomtestcard1.c dominion.o rngs.o
  *	gcc  -o randomtestCard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+ *
+ * Reference for finding the time it takes to run the program is:
+ * https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/
  * -----------------------------------------------------------------------*/
  
 #include "interface.h"
@@ -37,6 +40,9 @@ void assert(int expression, int* passed, int* failed, int* interimP,\
         int* interimF, int *count);
 
 int main() {
+    //get the time for the program
+    clock_t t;
+    t = clock();
     //one time set up to use rand()
     srand(time(NULL));
     int numPlayer;
@@ -202,8 +208,10 @@ int main() {
     printf("deckCount failed %d times\n\n", g);
 
     printf("All tests done for %s!\n", TESTCARD);
+    t = clock() - t;
+    double time_taken = ((double) t)/CLOCKS_PER_SEC;
+    printf("It took %f seconds for the testing to execute.\n", time_taken);
     printf("******************************************************\n\n");
-
 
     return 0;
 }

@@ -3,7 +3,10 @@
  * Include the following lines in your makefile:
  *
  *randomtestCard3: randomtestcard3.c dominion.o rngs.o
- *	gcc  -o randomtestCard3 -g  randomtestcard3.c dominion.o rngs.o $(CFLAGS)
+ *	gcc  -o randomtestCard3 -g  randomtestcard3.c dominion.o rngs.o $(CFLAGSa
+ *	
+ * Reference for finding the time it takes to run the program is:
+ * https://www.geeksforgeeks.org/how-to-measure-time-taken-by-a-program-in-c/
  * ----------------------------------------------------------------------- */
 
 #include "dominion.h"
@@ -38,6 +41,9 @@ void assert(int expression, int *passed, int* failed,int* interimP,
 
 int main() {
 
+    //get the time for the program
+    clock_t t;
+    t = clock();
     //one time set up to use rand()
     srand(time(NULL));
     int numPlayer;
@@ -108,10 +114,9 @@ int main() {
 	        G.hand[p+1][i] = randomNumber(0,26);
 	    }
             //randomize next player's deckCount
-	    G.deckCount[p+1] = randomNumber(0,100);
-            //The player has a random number of cards in their hand. The last index is a tribute card. 
+	    G.deckCount[p+1] = randomNumber(0,100); 
 
-	    G.hand[p][G.handCount[p] -1] = 19;
+	    //G.hand[p][G.handCount[p] -1] = 19;
             
             //randomize the next player
             nextPlayer = randomNumber(0,numPlayer -1);
@@ -332,6 +337,9 @@ int main() {
 
 
     printf("All tests done for %s!\n", TESTCARD);
+    t = clock() - t;
+    double time_taken = ((double) t)/CLOCKS_PER_SEC;
+    printf("It took %f seconds for the testing to execute.\n", time_taken);
     printf("********************************************************\n\n");
     
 
