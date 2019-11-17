@@ -82,7 +82,7 @@ int main() {
             //initialize game with random seed and numPlayer
             initializeGame(numPlayer, k, seed, &G);
             //randomize the other variables in the test
-	    G.handCount[p + 1] = randomNumber(0,100);
+	    G.handCount[p + 1] = randomNumber(6,100);
             G.handCount[p] = randomNumber(0,100);
             // set the players hand to have coppers
             for(i = 0; i < G.handCount[p]; i++)
