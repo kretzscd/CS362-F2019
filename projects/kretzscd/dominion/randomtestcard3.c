@@ -59,7 +59,7 @@ int main() {
     int revealedTributeCards[2] = {-1,-1};
     int nextPlayer ;
     // x is the number of tests to be performed
-    int x = 4000;
+    int x = 500;
     //declare/initialize counters for failed tests
     int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
 
@@ -119,11 +119,11 @@ int main() {
 	    //G.hand[p][G.handCount[p] -1] = 19;
             
             //randomize the next player
-            nextPlayer = randomNumber(0,numPlayer -1);
+            nextPlayer = randomNumber(1,numPlayer -1);
             //re-initialize revealed tribute cards that will be assigned to
             //the top 2 cards of the player's random hand.
-            revealedTributeCards[0] = -1;
-	    revealedTributeCards[1] = -1;
+            revealedTributeCards[0] = randomNumber(0,26);
+	    revealedTributeCards[1] = randomNumber(0,26);
 
             //if you want to see the randomized variables prior
             // to the function call, changed NOISY_TEST to 1
@@ -230,7 +230,7 @@ int main() {
 	    G.discardCount[p + 1] = randomNumber(0,10);
 	    G.playedCardCount = randomNumber(0,10);
 	    G.deckCount[p+1] = randomNumber(0,10);
-            nextPlayer = randomNumber(0, numPlayer -1);
+            nextPlayer = randomNumber(1, numPlayer -1);
 	    revealedTributeCards[0] = -1;
 	    revealedTributeCards[1] = -1;
 
@@ -249,8 +249,7 @@ int main() {
 	    }          
             printf("\n\n");
 	    #endif
-
-	    //player calls function  
+	    //player calls function 
 	    tribute_action(&G,0 , nextPlayer, revealedTributeCards);
 
             #if(NOISY_TEST == 1)
