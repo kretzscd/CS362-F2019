@@ -48,7 +48,7 @@ int main() {
     int numPlayer;
     int p;
     int bonus;
-    int seed;
+    int seed = 1000;
     int k[10] = { adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall };
     struct gameState G;
@@ -79,7 +79,6 @@ int main() {
         {
             // set up the game state and variable so that they are random
             //randomize the seed used to set up the game
-            seed = floor(Random()*5000);
             memset(&G, 23, sizeof(struct gameState));   // clear the game state
             initializeGame(numPlayer, k, seed, &G); // initialize a new game
 

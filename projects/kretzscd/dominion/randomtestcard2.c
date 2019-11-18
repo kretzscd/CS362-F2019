@@ -47,7 +47,7 @@ int main() {
     srand(time(NULL));
     // randomize the number of players in the game
     int numPlayer;// = randomNumber(2,4);
-    int seed;
+    int seed = 1000;
     int p, i, n;
     int bonus = 0;
     int k[10] = {adventurer, council_room, feast, gardens, mine
@@ -79,8 +79,6 @@ int main() {
             printf("*** TEST 1 FOR PLAYER %d ***\n", p+1);
             #endif
             // set up the game state and variable so that they are random
-            //randomize the seed used to set up the game
-            seed = floor(Random()*5000);
 
             //randomize setting up the structure of the game
             for (i = 0; i < sizeof(struct gameState); i++) {
@@ -89,8 +87,8 @@ int main() {
             //initialize game with random seed and numPlayer
             initializeGame(numPlayer, k, seed, &G);
             //randomize the other variables in the test
-	    G.handCount[p + 1] = randomNumber(6,50);
-            G.handCount[p] = randomNumber(6,50);
+	    G.handCount[p + 1] = randomNumber(6,100);
+            G.handCount[p] = randomNumber(6,100);
             // set the players hand to random cards
             for(i = 0; i < G.handCount[p]; i++)
             {
@@ -98,8 +96,8 @@ int main() {
             }
             // set up for TEST 1 -- choice1 = 1, bonus +2 
             G.hand[p][5] = 17;
-            G.discardCount[p] = randomNumber(0,50);
-            G.discardCount[p+1] = randomNumber(0,50);
+            G.discardCount[p] = randomNumber(0,100);
+            G.discardCount[p+1] = randomNumber(0,100);
             //choice1 and choice2 are booleans which is
             // why they are randomized to 0 or 1.
             choice1 = randomNumber(0,1);

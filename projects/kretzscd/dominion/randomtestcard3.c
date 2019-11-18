@@ -47,7 +47,7 @@ int main() {
     //one time set up to use rand()
     srand(time(NULL));
     int numPlayer;
-    int seed;
+    int seed = 1000;
     int p, i, n;
     int bonus = 0;
     int k[10] = {adventurer, council_room, feast, gardens, mine
@@ -82,7 +82,6 @@ int main() {
 	    // TEST set up
             // set up the game state and variable so that they are random
             //randomize the seed used to set up the game
-            seed = floor(Random()*5000);
 
             //randomize setting up the structure of the game
             for (i = 0; i < sizeof(struct gameState); i++) {
@@ -114,8 +113,8 @@ int main() {
 	        G.hand[p+1][i] = randomNumber(0,26);
 	    }
             //randomize next player's deckCount
-	    G.deckCount[p+1] = randomNumber(0,100); 
-
+	    G.deckCount[p+1] = randomNumber(0,200); 
+            G.discardCount[p+1] = randomNumber(0,200);
 	    //G.hand[p][G.handCount[p] -1] = 19;
             
             //randomize the next player
