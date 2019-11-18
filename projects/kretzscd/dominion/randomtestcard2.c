@@ -59,7 +59,7 @@ int main() {
     G.playedCardCount = 0;
     G.numActions = 1;
     G.numBuys = 1;
-    int choice1, choice2, randomIndex;
+    int choice1, choice2; 
     //declare/initialize counts that track the number of times certain state
     //outcomes fail
     int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
@@ -89,17 +89,17 @@ int main() {
             //initialize game with random seed and numPlayer
             initializeGame(numPlayer, k, seed, &G);
             //randomize the other variables in the test
-	    G.handCount[p + 1] = randomNumber(6,100);
-            G.handCount[p] = randomNumber(6,100);
+	    G.handCount[p + 1] = randomNumber(6,50);
+            G.handCount[p] = randomNumber(6,50);
             // set the players hand to random cards
             for(i = 0; i < G.handCount[p]; i++)
             {
                 G.hand[p][i] = randomNumber(0,26);
             }
             // set up for TEST 1 -- choice1 = 1, bonus +2 
-	    randomIndex = randomNumber(1,5);
-            G.discardCount[p] = randomNumber(0,100);
-            G.discardCount[p+1] = randomNumber(0,100);
+            G.hand[p][5] = 17;
+            G.discardCount[p] = randomNumber(0,50);
+            G.discardCount[p+1] = randomNumber(0,50);
             //choice1 and choice2 are booleans which is
             // why they are randomized to 0 or 1.
             choice1 = randomNumber(0,1);
@@ -125,7 +125,7 @@ int main() {
 
             // call minion_actionAction with random input. Note that 5 is
             // an index of a randomized card. So it is a randomized value.
-	    minion_actionAttack(choice1,choice2, &G, randomIndex, 0);
+	    minion_actionAttack(choice1,choice2, &G, 5, 0);
 
             #if(NOISY_TEST ==1)
 	    printf("Expect: bonus = 2\n");
