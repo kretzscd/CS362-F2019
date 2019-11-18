@@ -97,7 +97,7 @@ int main() {
                 G.hand[p][i] = randomNumber(0,26);
             }
             // set up for TEST 1 -- choice1 = 1, bonus +2 
-	    randomIndex = randomNumber(0,5);
+	    randomIndex = randomNumber(1,5);
             G.discardCount[p] = randomNumber(0,100);
             G.discardCount[p+1] = randomNumber(0,100);
             //choice1 and choice2 are booleans which is
