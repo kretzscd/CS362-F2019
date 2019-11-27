@@ -5,6 +5,11 @@
 #include <math.h>
 #include <stdlib.h>
 
+// for testAssert PASS/FAIL colored text
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define RESET   "\x1b[0m"
+
 int compare(const void* a, const void* b) {
     if (*(int*)a > *(int*)b)
         return 1;
@@ -1368,6 +1373,28 @@ int updateCoins(int player, struct gameState *state, int bonus)
     return 0;
 }
 
+/***********************************************************
+* void testAssert(int expected, int actual)
+* expected: the determined correct answer
+* actual: the calculated answer
+*
+* Returns nothing. Prints "Test passed" if expected and actual
+* result are the same. Prints "Test failed" with expected and
+* actual results otherwise. USED FOR UNIT TESTING
+************************************************************/
+void testAssert(int expected, int actual)
+{
+	if (expected == actual)
+	{
+		printf(GREEN "\tPASSED\t" RESET);
+	}
+	else
+	{
+		printf(RED "\tFAILED\t" RESET);
+	}
+
+	printf("Expected: %d, Actual: %d\n", expected, actual);
+}
 
 //end of dominion.c
 
