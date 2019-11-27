@@ -21,11 +21,20 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+
+unittest1: unittest1.c dominion.o rngs.o interface.o
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o interface.o $(CFLAGS)
+
+unittestresults: unittest1
+	rm -f unittestresults.out
+	./unittest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	gcov dominion.c -b -f >> unittestresults.out
+	cat unittestresults.out
 
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1
