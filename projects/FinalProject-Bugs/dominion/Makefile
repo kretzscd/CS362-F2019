@@ -27,14 +27,19 @@ player: player.c interface.o
 unittest1: unittest1.c dominion.o rngs.o interface.o
 	gcc -o unittest1 -g unittest1.c dominion.o rngs.o interface.o $(CFLAGS)
 
-unittestresults: unittest1
+unittest10: unittest10.c dominion.o rngs.o interface.o
+	gcc -o unittest10 -g unittest10.c dominion.o rngs.o interface.o $(CFLAGS)
+
+unittestresults: unittest1 unittest10
 	rm -f unittestresults.out
 	./unittest1 >> unittestresults.out
+	./unittest10 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	cat unittestresults.out
 
-all: playdom player 
+all: playdom player unittestresults 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest10
+
