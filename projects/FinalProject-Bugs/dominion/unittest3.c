@@ -18,24 +18,24 @@ int main()
 
 	// initialize game
 	initializeGame(numPlayers, k, seed, &base);
-	base.hand[player][0] = mine; // load hand with a mine and gold
+	base.hand[player][0] = remodel; // load hand with a mine and gold
 	base.hand[player][1] = gold;
 	base.handCount[player] = 2;
 
 	// adjust variables that won't change
 	choice3 = 0;
 	coin_bonus = 0;
-	card = mine;
+	card = remodel;
 
 	// start testing
-	printf("************************\n* Bug 2 Unit Test Start *\n************************\n");
+	printf("************************\n* Bug 3 Unit Test Start *\n************************\n");
 
 	printf("\nTEST 1: Trash a gold to gain a silver\n");
 	memcpy(&test, &base, sizeof(struct gameState)); // refresh test state
 	choice1 = 1; // hand position of gold to trash
 	choice2 = silver; // card to get in exchange
 	handPos = 0; // hand position of mine
-	inDiscard = 0; // mine not in discard yet
+	inDiscard = 0; // remodel not in discard yet
 	inHand = 0; // silver not in hand
 	returnState = cardEffect(card, choice1, choice2, choice3, &test, handPos, &coin_bonus); // play card
 
@@ -43,42 +43,56 @@ int main()
 	printf("Valid choice, should return 0\n");
 	testAssert(0, returnState);
 
-	// hand contains 1 fewer
-	printf("Hand size decreases by 1\n");
-	testAssert(base.handCount[player] - 1, test.handCount[player]);
+	// remodel and gold cards chould be removed from hand
+	printf("Hand size decreases by 2\n");
+	testAssert(base.handCount[player] - 2, test.handCount[player]);
 
-	// trash card should be discarded
-	printf("Discard count increases by 1\n");
+	// remodel and silver card should be moved to discard pile
+	printf("Discard count increases by 2\n");
 	testAssert(base.discardCount[player] + 1, test.discardCount[player]);
 
-	// check discarded cards for mine
-	printf("Discard pile should contain mine card\n");
-	//check through discard pile for mine card
+	// check discarded cards for remodel
+	printf("Discard pile contains remodel card\n");
+	//check through discard pile for remodel card
 	int i;
 	for (i = 0; i < test.discardCount[player]; i++)
 	{
-		// check if its a mine card
-		if (test.discard[player][i] == mine)
+		// check if its a remodel card
+		if (test.discard[player][i] == remodel)
 		{
 			inDiscard = 1;
 		}
-
-		printf("%d: %d\n", i, test.discard[player][i]);
 	}
 	testAssert(1, inDiscard);
 
-	// check hand for acquired silver card
-	printf("Silver card is in hand\n");
-	//check through player's hand for silver card
+	// check discarded cards for silver
+	printf("Discard pile contains silver card\n");
+	//check through discard pile for silver card
+	// check discarded cards for remodel
+	inDiscard = 0; // reset varible to check for new card in discard 
+	for (i = 0; i < test.discardCount[player]; i++)
+	{
+		// check if its a remodel card
+		if (test.discard[player][i] == silver)
+		{
+			inDiscard = 1;
+		}
+	}
+	testAssert(1, inDiscard);
+
+	// check remodel card is removed from hand
+	printf("Remodel is removed from hand\n");
+	//check through player's hand for remodel card
 	for (i = 0; i < test.handCount[player]; i++)
 	{
-		// check if its a silver card
-		if (test.hand[player][i] == silver)
+		// check if its a remodel card
+		if (test.hand[player][i] == remodel)
 		{
 			inHand = 1;
 		}
 	}
-	testAssert(1, inHand);
+	testAssert(0, inHand);
+
 	printf("Unit Test Complete\n");
 
 	return 0;
