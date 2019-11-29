@@ -27,7 +27,7 @@ int main()
 
 	// start testing
         printf("\n");
-	printf("*****************************\n* Ambassador Unit Test Start *\n*****************************\n");
+	printf("******************************\n* Ambassador Unit Test Start *\n******************************\n");
 
 	printf("\nTEST 1: Player chooses to return 2 estate cards to supply\n"); 
 
