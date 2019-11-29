@@ -28,7 +28,7 @@ int main()
 	card = mine;
 
 	// start testing
-	printf("************************\n* Bug 2 Unit Test Start *\n************************\n");
+	printf("\n*************************\n* Bug 2 Unit Test Start *\n*************************\n");
 
 	printf("\nTEST 1: Trash a gold to gain a silver\n");
 	memcpy(&test, &base, sizeof(struct gameState)); // refresh test state
