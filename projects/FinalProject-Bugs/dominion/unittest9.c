@@ -21,13 +21,14 @@ int main()
 	initializeGame(numPlayers, k, seed, &base);
 	base.hand[currentPlayer][0] = tribute; // set currentPlayer's position 0 to tribute
 	base.deckCount[nextPlayer] = 10;      // set nextPlayer's deckCount to 10
-	base.deck[nextPlayer][8] = estate;    // set the nexPlayer's top 2 cards to estate
-        base.deck[nextPlayer][9] = estate; 
+	base.deck[nextPlayer][8] = estate;    // set the nexPlayer's top 3 cards to estate
+        base.deck[nextPlayer][9] = estate;
+        base.deck[nextPlayer][7] = estate; 
         base.numActions = 1;
 
 	// start testing
         printf("\n");
-	printf("***************************\n* Tribute Unit Test Start *\n***************************\n");
+	printf("*************************\n* Bug 9 Unit Test Start *\n*************************\n");
 
 	printf("\nTEST 1: \n"); 
         
@@ -50,7 +51,7 @@ int main()
 
         printf("Player's numActions should be 1\n");
        
-	testAssert(1, test.numActions);
+	testAssert(base.numActions, test.numActions);
 
 	printf("Unit Test Complete\n\n");
 

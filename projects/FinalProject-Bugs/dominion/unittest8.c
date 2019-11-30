@@ -25,7 +25,7 @@ int main()
 
 	// start testing
         printf("\n");
-	printf("***********************************\n* Unit Test For Bonus Coins Start *\n***********************************\n");
+	printf("*************************\n* Bug 8 Unit Test Start *\n*************************\n");
 
 	printf("\nTEST 1: Case Baron\n"); 
 
@@ -83,10 +83,11 @@ int main()
 	// initialize game to test tribute
 	initializeGame(numPlayers, k, seed, &base);
 	base.hand[currentPlayer][0] = tribute;  // set currentPlayer's position 0 to tribute
-        //set the nextPlayer's deckCount and the top 2 cards
+        //set the nextPlayer's deckCount and the top 3 cards
         base.deckCount[nextPlayer] = 10;
         base.deck[nextPlayer][9] = silver;
         base.deck[nextPlayer][8] = copper;
+        base.deck[nextPlayer][7] = copper;
         base.coins = 0;
 
 	printf("\nTEST 3: Case Tribute\n"); 
