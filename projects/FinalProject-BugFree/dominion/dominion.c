@@ -863,7 +863,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         {
             if (state->hand[currentPlayer][i] == j)
             {
-                discardCard(i, currentPlayer, state, 0);
+                discardCard(i, currentPlayer, state, 1);
                 break;
             }
         }
@@ -1274,9 +1274,11 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     //if card is not trashed, added to Played pile
     if (trashFlag < 1)
     {
-        //add card to played pile
-        state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
-        state->playedCardCount++;
+		// *****FIX******
+		// Changed to add to discard pile, not played cards
+        //add card to discard pile
+        state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos];
+        state->discardCount[currentPlayer]++;
     }
 
     //set played card to -1
@@ -1285,14 +1287,21 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     //remove card from player's hand
     if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
     {
+        //set last card to -1
+        state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         //reduce number of cards in hand
         state->handCount[currentPlayer]--;
     }
+
+	// ******FIX******
+	// Removed unnecessary else if statement
+/*
     else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
     {
         //reduce number of cards in hand
         state->handCount[currentPlayer]--;
     }
+*/
     else
     {
         //replace discarded card with last card in hand

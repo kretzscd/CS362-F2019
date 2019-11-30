@@ -36,7 +36,7 @@ int main()
 	choice2 = silver; // card to get in exchange
 	handPos = 0; // hand position of mine
 	inDiscard = 0; // discard pile doesn not contain copper
-	inHand = 1; // hand contains copper
+	inHand = 0;
 	returnState = cardEffect(card, choice1, choice2, choice3, &test, handPos, &coin_bonus); // play card
 
 	// should return 0

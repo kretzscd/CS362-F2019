@@ -36,24 +36,24 @@ unittest3: unittest3.c dominion.o rngs.o interface.o
 unittest4: unittest4.c dominion.o rngs.o interface.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o interface.o $(CFLAGS)
 
-unittest8: unittest8.c dominion.o rngs.o interface.o
-	gcc -o unittest8 -g unittest8.c dominion.o rngs.o interface.o $(CFLAGS)
+#unittest8: unittest8.c dominion.o rngs.o interface.o
+#	gcc -o unittest8 -g unittest8.c dominion.o rngs.o interface.o $(CFLAGS)
 
-unittest9: unittest9.c dominion.o rngs.o interface.o
-	gcc -o unittest9 -g unittest9.c dominion.o rngs.o interface.o $(CFLAGS)
+#unittest9: unittest9.c dominion.o rngs.o interface.o
+#	gcc -o unittest9 -g unittest9.c dominion.o rngs.o interface.o $(CFLAGS)
 
-unittest10: unittest10.c dominion.o rngs.o interface.o
-	gcc -o unittest10 -g unittest10.c dominion.o rngs.o interface.o $(CFLAGS)
+#unittest10: unittest10.c dominion.o rngs.o interface.o
+#	gcc -o unittest10 -g unittest10.c dominion.o rngs.o interface.o $(CFLAGS)
 
-unittestresults: unittest1 unittest2 unittest3 unittest4 unittest8 unittest9 unittest10
+unittestresults: unittest1 unittest2 unittest3 unittest4 #unittest8 unittest9 unittest10
 	rm -f unittestresults.out
 	./unittest1 >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	./unittest4 >> unittestresults.out
-	./unittest8 >> unittestresults.out
-	./unittest9 >> unittestresults.out
-	./unittest10 >> unittestresults.out
+#	./unittest8 >> unittestresults.out
+#	./unittest9 >> unittestresults.out
+#	./unittest10 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	cat unittestresults.out
