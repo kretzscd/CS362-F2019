@@ -47,7 +47,7 @@ int main()
 	printf("Hand size decreases by 1\n");
 	testAssert(base.handCount[player] - 1, test.handCount[player]);
 
-	// trash card should be discarded
+	// mine card should be discarded
 	printf("Discard count increases by 1\n");
 	testAssert(base.discardCount[player] + 1, test.discardCount[player]);
 
