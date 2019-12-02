@@ -21,9 +21,8 @@ int main()
 	base.hand[currentPlayer][0] = ambassador; // set currentPlayer's position 0 to ambassador
 	base.hand[currentPlayer][1] = estate; // set currentPlayer's position 1 to estate
 	base.hand[currentPlayer][2] = estate; // set currentPlayer's position 2 to estate
-        base.hand[currentPlayer][3] = copper; // set the last 3 cards to coppers
-        base.hand[currentPlayer][3] = copper;
-        base.hand[currentPlayer][3] = copper;
+        base.hand[currentPlayer][3] = copper; // set the last 2 cards to coppers
+        base.hand[currentPlayer][4] = copper;
         base.supplyCount[estate] = 8;
 
 	// start testing
