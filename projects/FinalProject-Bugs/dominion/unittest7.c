@@ -57,10 +57,10 @@ int main() {
 	stateOfGame.hand[currentPlayer][0] = tribute;
 	stateOfGame.hand[currentPlayer][1] = ambassador;
 	stateOfGame.hand[currentPlayer][2] = feast;
-	stateOfGame.hand[currentPlayer][3] = feast;
+	stateOfGame.hand[currentPlayer][3] = gardens;
 
-	stateOfGame.deck[nextPlayer][0] = gold;
-	stateOfGame.deck[nextPlayer][1] = copper;
+	stateOfGame.deck[nextPlayer][0] = feast;
+	stateOfGame.deck[nextPlayer][1] = silver;
 
 
 
@@ -70,20 +70,22 @@ int main() {
 	cardEffect(card, choice1, choice2, choice3, &stateOfGame, handPos, &bonus);
 
 	// Assertions
+	// Player should gain 2 coins since the next player has two treasure cards to reveal
+	printf("\nTEST 1: The player should gain zero coins\n");
+	printf("NOTE: Due to a seperate bug where the player in tribute, the player gains two coins\n");
+	printf("This gain is not accounted for in the below test to a seperate bug where the player in tribute, the player gains two coins\n");
+	printf("This test will pass once the bug is fixed in the final bug-free verion of dominion.c\n");
+	testAssert(0, stateOfGame.coins);
 
-	// Player should gain 4 coins since the next player has two treasure cards to reveal
-	printf("\nTEST 1: The player should gain four coins\n");
-
-	testAssert(stateOfGame.coins, 0);
 	// Actions should not increase
 	// However,due to a bug where the tribute function runs three times,
 	// the player gets two additional actions
-	printf("\nTEST 2: The player should not gain additional actions due to the revealed cards being treasures\n");
-	testAssert(0, stateOfGame.numActions);
+	printf("\nTEST 2: The player should gain only 2 additional actions due to the revealed cards being action cards\n");
+	testAssert(2, stateOfGame.numActions);
 
-	printf("\nTEST 3: The player should not gain additional actions cards\n");
-	printf("NOTE: Due to seperate bug exists where the player does not discard the played tribute card,\n");
-	printf("so the player will have the same amount of cards they started with.\n");
+	printf("\nTEST 3: The player should not gain additional cards\n");
+	printf("NOTE: Due to a seperate bug where the player does not discard the played tribute card,\n");
+	printf("the player will have the same amount of cards they started with.\n");
 	printf("Unless additional cards are picked up through the tribute card effect.\n");
 	testAssert(4, stateOfGame.handCount[0]);
 
