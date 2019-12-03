@@ -77,7 +77,7 @@ int main() {
 	 * so final total will be off by six points since handCount is 4
 	 * and discard count is 3
 	*/
-	printf("\nTEST 1: The player's hand calculated score should match their scoreFor score\n");
+	printf("\nTEST 1: The player's hand calculated score should match their scoreFor score.\n");
 	testAssert(calculatedScore, scoreForOutput);
 
 }
