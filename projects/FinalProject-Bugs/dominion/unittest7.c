@@ -72,15 +72,16 @@ int main() {
 	// Assertions
 	// Player should gain 2 coins since the next player has two treasure cards to reveal
 	printf("\nTEST 1: The player should gain zero coins\n");
-	printf("NOTE: Due to a seperate bug where the player in tribute, the player gains two coins\n");
-	printf("This gain is not accounted for in the below test to a seperate bug where the player in tribute, the player gains two coins\n");
+	printf("NOTE: Due to a seperate bug where the player in tribute, the player gains two coins from a treasure card being revealed\n");
+	printf("The playCard function handles coin calculations for players,");
+	printf("but the above mentioned bug gives the player the two coins here\n");
 	printf("This test will pass once the bug is fixed in the final bug-free verion of dominion.c\n");
 	testAssert(0, stateOfGame.coins);
 
 	// Actions should not increase
 	// However,due to a bug where the tribute function runs three times,
 	// the player gets two additional actions
-	printf("\nTEST 2: The player should gain only 2 additional actions due to the revealed cards being action cards\n");
+	printf("\nTEST 2: The player should gain only 2 additional actions due to one of the revealed card being an action card\n");
 	testAssert(2, stateOfGame.numActions);
 
 	printf("\nTEST 3: The player should not gain additional cards\n");
