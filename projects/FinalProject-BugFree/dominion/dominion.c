@@ -472,7 +472,12 @@ int scoreFor (int player, struct gameState *state) {
     }
 
     //score from deck
-    for (i = 0; i < state->discardCount[player]; i++)
+	/* Fixed bug here:
+	* Changed for (i = 0; i < state->discardCount[player]; i++)
+	* to for (i = 0; i < state->deckCount[player]; i++)
+	* This fixes a miscounting score issue
+	*/
+    for (i = 0; i < state->deckCount[player]; i++)
     {
         if (state->deck[player][i] == curse) {
             score = score - 1;
@@ -1078,7 +1083,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
             tributeRevealedCards[1] = -1;
         }
 
-        for (i = 0; i <= 2; i ++) {
+		/*
+		 * Bug fixed here:
+		 * Changed for (i = 0; i <= 2; i ++) { to 
+		 * for (i = 0; i < 2; i ++) {
+		 * Bonuses calculations only occur twice now.
+		 */
+        for (i = 0; i < 2; i ++) {
             if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
                 //***FIX THE BUG***
                 //state->coins += 2;
