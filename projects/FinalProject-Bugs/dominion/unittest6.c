@@ -72,15 +72,15 @@ int main() {
 
 	// Assertions
 	// Player should have been able to pick up the province card that was in supply
-	printf("\nTEST 1: The player should have been able to pick up the desired card from supply\n");
-	printf("NOTE: Due to bug 6 not being a valid bug, this test will pass as expected\n");
+	printf("\nTEST 1: The player should have been able to pick up the desired card from supply.\n");
+	printf("NOTE: Due to bug 6 not being a valid bug, this test will pass as expected.\n");
 	testAssert(0, stateOfGame.supplyCount[mine]);
 
 	// Player should have 3 cards in hand due to picking up a card and discarding a card
 	// A seperate bug exists that resets the player's hand, however discarding and
 	// picking up a card maintains the player's hand count.  So even without the hand count bug,
 	// the player would have the same amount of  cards as before playing the feast card.
-	printf("\nTEST 2: The player should have three cards in have after discarding and gaining a card\n");
-	printf("NOTE: Due to seperate bug that resets the player's hand in the feast card effect, this test will always pass\n");
+	printf("\nTEST 2: The player should have three cards in have after discarding and gaining a card.\n");
+	printf("NOTE: Due to seperate bug that resets the player's hand in the feast card effect, this test will always pass.\n");
 	testAssert(3, stateOfGame.handCount[0]);
 }
