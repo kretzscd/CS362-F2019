@@ -8,7 +8,7 @@ dominion.o: dominion.h dominion.c rngs.o
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
-#To run playdom you need to entere: ./playdom <any integer number> like ./playdom 10*/
+#To run playdom you need to enter: ./playdom <any integer number> like ./playdom 10*/
 
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc  -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
@@ -35,7 +35,16 @@ unittest3: unittest3.c dominion.o rngs.o interface.o
 
 unittest4: unittest4.c dominion.o rngs.o interface.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o interface.o $(CFLAGS)
+	
+unittest5: unittest5.c dominion.o rngs.o interface.o
+	gcc -o unittest5 -g unittest5.c dominion.o rngs.o interface.o $(CFLAGS)
 
+unittest6: unittest6.c dominion.o rngs.o interface.o
+	gcc -o unittest6 -g unittest6.c dominion.o rngs.o interface.o $(CFLAGS)
+	
+unittest7: unittest7.c dominion.o rngs.o interface.o
+	gcc -o unittest7 -g unittest7.c dominion.o rngs.o interface.o $(CFLAGS)
+	
 unittest8: unittest8.c dominion.o rngs.o interface.o
 	gcc -o unittest8 -g unittest8.c dominion.o rngs.o interface.o $(CFLAGS)
 
@@ -45,12 +54,15 @@ unittest9: unittest9.c dominion.o rngs.o interface.o
 unittest10: unittest10.c dominion.o rngs.o interface.o
 	gcc -o unittest10 -g unittest10.c dominion.o rngs.o interface.o $(CFLAGS)
 
-unittestresults: unittest1 unittest2 unittest3 unittest4 unittest8 unittest9 unittest10
+unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
 	rm -f unittestresults.out
 	./unittest1 >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
-	./unittest4 >> unittestresults.out
+	./unittest4 >> unittestresults.out	
+	./unittest5 >> unittestresults.out
+	./unittest6 >> unittestresults.out
+	./unittest7 >> unittestresults.out
 	./unittest8 >> unittestresults.out
 	./unittest9 >> unittestresults.out
 	./unittest10 >> unittestresults.out
@@ -61,4 +73,4 @@ unittestresults: unittest1 unittest2 unittest3 unittest4 unittest8 unittest9 uni
 all: playdom player unittestresults 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 unittest8 unittest9 unittest10
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 unittest5 unittest6 unittest7 unittest8 unittest9 unittest10
