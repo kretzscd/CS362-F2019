@@ -13,7 +13,7 @@ int main()
 	int numPlayers = 2;
 	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 	int seed = 1000;
-	int card, choice1, choice2, choice3, handPos, coin_bonus, returnState, inDiscard, inHand;
+	int card, choice1, choice2, choice3, handPos, coin_bonus, returnState, inDiscard, inHand, inPlayed;
 	int player = 0;
 
 	// initialize game
@@ -36,8 +36,13 @@ int main()
 	choice2 = silver; // card to get in exchange
 	handPos = 0; // hand position of mine
 	inDiscard = 0; // discard pile doesn not contain copper
-	inHand = 0;
+	inHand = 0; // hand contains copper
+	inPlayed = 0; // played pile contains copper
 	returnState = cardEffect(card, choice1, choice2, choice3, &test, handPos, &coin_bonus); // play card
+
+
+	// Setup played cards
+	base.playedCardCount = 0;
 
 	// should return 0
 	printf("Valid choice, should return 0\n");
@@ -69,6 +74,19 @@ int main()
 		}
 	}
 	testAssert(0, inHand);
+
+	// check hand for played card pile
+	printf("Played does not contain trashed copper\n");
+	//check through hand for copper card
+	for (i = 0; i < test.playedCardCount; i++)
+	{
+		// check if its a copper card
+		if (test.playedCards[i] == copper)
+		{
+			inPlayed = 1;
+		}
+	}
+	testAssert(0, inPlayed);
 
 	printf("Unit Test Complete\n");
 
