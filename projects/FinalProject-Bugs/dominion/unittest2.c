@@ -62,6 +62,8 @@ int main()
 		{
 			inDiscard = 1;
 		}
+
+		printf("%d: %d\n", i, test.discard[player][i]);
 	}
 	testAssert(1, inDiscard);
 

@@ -49,7 +49,7 @@ int main()
 
 	// remodel and silver card should be moved to discard pile
 	printf("Discard count increases by 2\n");
-	testAssert(base.discardCount[player] + 2, test.discardCount[player]);
+	testAssert(base.discardCount[player] + 1, test.discardCount[player]);
 
 	// check discarded cards for remodel
 	printf("Discard pile contains remodel card\n");
